@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Base Layout</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main_styles.css' %}">
+  </head>
+  <body>
+    <div class="wrapper">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

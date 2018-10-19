@@ -22,8 +22,8 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^landing/', views.landing),
-    url(r'^', include('apps.accounts.urls')),
+    url(r'^$', views.landing),
+    url(r'^accounts/', include('apps.accounts.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
