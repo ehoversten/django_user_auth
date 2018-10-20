@@ -8,8 +8,17 @@
   </head>
   <body>
     <div class="wrapper">
-      {% block content %}
-      {% endblock %}
+      <div class="row">
+        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      </div>
+      <div class="row">
+        {% block content %}
+        {% endblock %}
+
+      </div>
     </div>
   </body>
 </html>

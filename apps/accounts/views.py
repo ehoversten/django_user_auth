@@ -11,6 +11,10 @@ def dashboard(request):
     content = "Welkommen!!!"
     return render(request, "accounts/dashboard.html", {"content":content} )
 
+def dashboard_logout(request):
+    content = "You have been logged out"
+    return render(request, "accounts/logout_page.html", {"content":content} )
+
 def signup_page(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -51,4 +55,4 @@ def login_page(request):
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('accounts:logout')
+        return redirect('accounts:dashboard_logout')
