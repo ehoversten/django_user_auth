@@ -11,19 +11,24 @@ def dashboard(request):
     content = "Welkommen!!!"
     return render(request, "accounts/dashboard.html", {"content":content} )
 
-def dashboard_logout(request):
-    content = "You have been logged out"
-    return render(request, "accounts/logout_page.html", {"content":content} )
 
 def signup_page(request):
     if request.method == 'POST':
+        # create an instance of the form(User) and pass it the POST request data
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            # create an instance of the user
+            user = form.save()
+            # pass the new user (username and password) to be authenticated and logged in by Django's auth
             login(request, user)
+
+            #      ***** OR *****
+
+            # form.save()
+            # username = form.cleaned_data.get('username')
+            # raw_password = form.cleaned_data.get('password1')
+            # user = authenticate(username=username, password=raw_password)
+            # login(request, user)
             return redirect('accounts:dashboard')
     else:
         form = UserCreationForm()
@@ -64,7 +69,13 @@ def login_page(request):
     # return render(request, 'accounts/login_page.html', context)
 
 
-def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('accounts:dashboard_logout')
+# // ***** FUNCTION BASE LOGOUT VIEWS ******* //
+# def logout_view(request):
+#     if request.method == 'POST':
+#         logout(request)
+#         return redirect('accounts:dashboard_logout')
+
+
+# def dashboard_logout(request):
+#     content = "You have been logged out"
+#     return render(request, "accounts/logout_page.html", {"content":content} )
