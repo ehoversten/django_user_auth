@@ -18,17 +18,17 @@ def signup_page(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             # create an instance of the user
-            user = form.save()
-            # pass the new user (username and password) to be authenticated and logged in by Django's auth
-            login(request, user)
+            # user = form.save()
+            # # pass the new user (username and password) to be authenticated and logged in by Django's auth
+            # login(request, user)
 
             #      ***** OR *****
 
-            # form.save()
-            # username = form.cleaned_data.get('username')
-            # raw_password = form.cleaned_data.get('password1')
-            # user = authenticate(username=username, password=raw_password)
-            # login(request, user)
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
             return redirect('accounts:dashboard')
     else:
         form = UserCreationForm()
